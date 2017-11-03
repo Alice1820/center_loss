@@ -8,7 +8,7 @@ from torchvision import datasets
 from  torch.utils.data import DataLoader
 # import torch.optim.lr_scheduler as lr_scheduler
 from CenterLoss import CenterLoss
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 class Net(nn.Module):
@@ -45,20 +45,20 @@ class Net(nn.Module):
         ip2 = self.ip2(ip1)
         return ip1, F.log_softmax(ip2)
 
-def visualize(feat, labels, epoch):
-    plt.ion()
-    c = ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff',
-         '#ff00ff', '#990000', '#999900', '#009900', '#009999']
-    plt.clf()
-    for i in range(10):
-        plt.plot(feat[labels == i, 0], feat[labels == i, 1], '.', c=c[i])
-    plt.legend(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], loc = 'upper right')
-    plt.xlim(xmin=-5,xmax=5)
-    plt.ylim(ymin=-5,ymax=5)
-    plt.text(-4.8,4.6,"epoch=%d" % epoch)
-    plt.savefig('./images/epoch=%d.jpg' % epoch)
-    plt.draw()
-    plt.pause(0.001)
+# def visualize(feat, labels, epoch):
+#     plt.ion()
+#     c = ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff',
+#          '#ff00ff', '#990000', '#999900', '#009900', '#009999']
+#     plt.clf()
+#     for i in range(10):
+#         plt.plot(feat[labels == i, 0], feat[labels == i, 1], '.', c=c[i])
+#     plt.legend(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], loc = 'upper right')
+#     plt.xlim(xmin=-5,xmax=5)
+#     plt.ylim(ymin=-5,ymax=5)
+#     plt.text(-4.8,4.6,"epoch=%d" % epoch)
+#     plt.savefig('./images/epoch=%d.jpg' % epoch)
+#     plt.draw()
+#     plt.pause(0.001)
 
 
 def train(train_loader, model, criterion, optimizer, epoch, use_cuda):
@@ -87,7 +87,7 @@ def train(train_loader, model, criterion, optimizer, epoch, use_cuda):
 
     feat = torch.cat(ip1_loader, 0)
     labels = torch.cat(idx_loader, 0)
-    visualize(feat.data.cpu().numpy(),labels.data.cpu().numpy(),epoch)
+    # visualize(feat.data.cpu().numpy(),labels.data.cpu().numpy(),epoch)
 
 
 def main():
