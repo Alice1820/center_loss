@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 from torch.autograd import Variable
 from torchvision import datasets
 from  torch.utils.data import DataLoader
-import torch.optim.lr_scheduler as lr_scheduler
+# import torch.optim.lr_scheduler as lr_scheduler
 from CenterLoss import CenterLoss
 import matplotlib.pyplot as plt
 
@@ -116,14 +116,15 @@ def main():
 
     # optimzer4nn
     optimizer4nn = optim.SGD(model.parameters(),lr=0.001,momentum=0.9, weight_decay=0.0005)
-    sheduler = lr_scheduler.StepLR(optimizer4nn,20,gamma=0.8)
+    # sheduler = lr_scheduler.StepLR(optimizer4nn,20,gamma=0.8)
 
     # optimzer4center
     optimzer4center = optim.SGD(centerloss.parameters(), lr =0.5)
 
     for epoch in range(50):
-        sheduler.step()
+        # sheduler.step()
         # print optimizer4nn.param_groups[0]['lr']
+        optimizer4nn.step()
         train(train_loader, model, criterion, [optimizer4nn, optimzer4center], epoch+1, use_cuda)
 
 
