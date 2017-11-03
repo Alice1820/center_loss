@@ -62,7 +62,7 @@ def visualize(feat, labels, epoch):
 
 
 def train(train_loader, model, criterion, optimizer, epoch, use_cuda):
-    print "Training... Epoch = %d" % epoch
+    print ("Training... Epoch = %d" % epoch)
     ip1_loader = []
     idx_loader = []
     for i,(data, target) in enumerate(train_loader):
@@ -113,7 +113,7 @@ def main():
         centerloss = centerloss.cuda()
         model = model.cuda()
     criterion = [nllloss, centerloss]
-    
+
     # optimzer4nn
     optimizer4nn = optim.SGD(model.parameters(),lr=0.001,momentum=0.9, weight_decay=0.0005)
     sheduler = lr_scheduler.StepLR(optimizer4nn,20,gamma=0.8)

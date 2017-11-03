@@ -50,9 +50,9 @@ class CenterLoss(nn.Module):
 def main():
     ct = CenterLoss(10,2)
     # ct = ct.cuda()
-    print list(ct.parameters())
+    print (list(ct.parameters()))
 
-    print ct.centers.grad
+    print (ct.centers.grad)
 
     y = Variable(torch.Tensor([0,0,0,1]))#.cuda()
     # print y
@@ -61,7 +61,7 @@ def main():
 
     out = ct(y,feat)
     out.backward()
-    print ct.centers.grad
+    print (ct.centers.grad)
 
 
 
